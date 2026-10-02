@@ -1,0 +1,66 @@
+name: SCI cause lists → OneCourt app
+
+on:
+  schedule:
+    # Every 30 min from 15:30 to 02:00 IST (10:00–20:30 UTC), when SCI
+    # publishes next-day lists (main ~7 PM, supplementary ~10 PM IST);
+    # hourly the rest of the day for late changes and advance lists.
+    - cron: "*/30 10-20 * * *"
+    - cron: "0 0-9,21-23 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Re-send every list even if unchanged"
+        type: boolean
+        default: false
+      date:
+        description: "Only this date (YYYY-MM-DD), blank for all"
+        required: false
+        default: ""
+
+permissions:
+  contents: write   # for the monthly heartbeat commit below
+
+concurrency:
+  group: sci-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch, parse and send to the app
+        env:
+          APP_INGEST_URL: ${{ secrets.APP_INGEST_URL }}
+          APP_INGEST_TOKEN: ${{ secrets.APP_INGEST_TOKEN }}
+        run: |
+          args=""
+          if [ "${{ inputs.force }}" = "true" ]; then args="$args --force"; fi
+          if [ -n "${{ inputs.date }}" ]; then args="$args --date ${{ inputs.date }}"; fi
+          python run.py $args
+
+      # GitHub switches off scheduled workflows in public repos after 60 days
+      # without a commit. One tiny commit a month keeps this one running.
+      - name: Monthly heartbeat
+        if: always()
+        run: |
+          month=$(date -u +%Y-%m)
+          if [ "$(cat status/heartbeat.txt 2>/dev/null)" != "$month" ]; then
+            echo "$month" > status/heartbeat.txt
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add status/heartbeat.txt
+            git commit -m "Heartbeat $month"
+            git push || echo "::warning::Heartbeat push failed; will retry next run."
+          fi
