@@ -4,3 +4,4 @@ __pycache__/
 .venv/
 out/
 status/last-run.json
+status/last-run-nclat.json

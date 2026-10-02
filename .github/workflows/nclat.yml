@@ -1,0 +1,52 @@
+name: NCLAT cause lists → OneCourt app
+
+on:
+  schedule:
+    # NCLAT uploads lists 3-5 days ahead, mostly in the afternoon and
+    # evening. Every 30 min 2:30 PM-11 PM IST (09:00-17:30 UTC), at :15/:45
+    # so it never runs at the same minute as the SCI job; every 2 hours
+    # otherwise for late supplementary lists.
+    - cron: "15,45 9-17 * * *"
+    - cron: "15 0-8/2,18-23/2 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Re-send every list even if unchanged"
+        type: boolean
+        default: false
+      date:
+        description: "Only this date (YYYY-MM-DD), blank for all"
+        required: false
+        default: ""
+
+permissions:
+  contents: read    # the SCI workflow does the monthly heartbeat
+
+concurrency:
+  group: nclat-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch, parse and send to the app
+        env:
+          APP_INGEST_URL: ${{ secrets.APP_INGEST_URL }}
+          APP_INGEST_TOKEN: ${{ secrets.APP_INGEST_TOKEN }}
+        run: |
+          args=""
+          if [ "${{ inputs.force }}" = "true" ]; then args="$args --force"; fi
+          if [ -n "${{ inputs.date }}" ]; then args="$args --date ${{ inputs.date }}"; fi
+          python run.py --court nclat $args

@@ -1,4 +1,4 @@
-# court-data — Supreme Court cause lists for OneCourt Pro
+# court-data — Supreme Court and NCLAT cause lists for OneCourt Pro
 
 Reads the Supreme Court of India's published cause-list PDFs, turns every
 entry into structured data, and sends it to the OneCourt app
@@ -89,3 +89,27 @@ parses to zero entries — it never sends an empty list, so good data in the app
 is never wiped. Case types the parser doesn't recognise are reported in the
 run log and on the app's admin page; add the new spelling to
 `common/case_types_sci.json` (and the app's copy) and add a test.
+
+## NCLAT (`--court nclat`)
+
+`nclat/discover.py` reads `https://nclat.nic.in/daily-cause-list`, which
+links every list as a PDF; the court comes from the file name
+(`Causelist_ch_…` Court I, `Causelist_II_…`, `Registrar Court_…`, a bare date
+for the Chennai Bench, `Supp_…`/`Suppl` for supplementary lists, `_0`/`_1` for
+re-uploads — the newest wins). `nclat/tables.py` is the table reader from the
+NCLAT cause-list site; `nclat/parse.py` turns its rows into the same entry
+shape as SCI. Court numbers are `N1`–`N4`, `NR` (Registrar) and `NCH`
+(Chennai).
+
+Keys use `common/case_types_nclat.json`: codes start with `N`
+(`NCAI|1785|2025` = Comp. App. (AT) (Ins) 1785/2025), and the Chennai Bench,
+which numbers its cases separately, adds `CH` (`NCAICH|510|2026`). The app
+keeps a copy of the file in `database/` — change both together.
+
+nclat.nic.in sends no ETag, so "Last-Modified|size" marks a changed list.
+Schedule: `.github/workflows/nclat.yml`. Case status and orders are fetched
+by the app itself (no CAPTCHA on NCLAT), not here.
+
+```bash
+python3 run.py --court nclat --dry-run --out out/
+```

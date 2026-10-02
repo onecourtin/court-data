@@ -1,0 +1,29 @@
+{
+  "_about": "NCLAT case types. Codes start with N so they never collide with SCI codes; the Chennai Bench's own number series gets the same code plus CH (NCAI -> NCAICH). status_id is the case_type value NCLAT's case-status form uses. Aliases are compared with spaces and dots removed and upper-cased. A copy lives in onecourt-app/database/ — change both together.",
+  "benches": {
+    "delhi": {"label": "Principal Bench, New Delhi", "suffix": ""},
+    "chennai": {"label": "Chennai Bench", "suffix": "CH"}
+  },
+  "types": [
+    {"code": "NCAI", "short": "Comp. App. (AT) (Ins)", "label": "Company Appeal (AT) (Insolvency)", "status_id": 33, "common": true,
+     "aliases": ["Comp. App. (AT) (Ins)", "Comp App (AT) (Ins)", "Company Appeal (AT) (Ins)", "Company Appeal (AT) (Insolvency)", "Company Appeal(AT)(Ins)", "CA (AT) (Ins)", "C.A. (AT) (Ins)", "Comp. Appeal (AT) (Ins)", "Comp. App. (AT) (Insolvency)", "Comp. App. (AT)(Ins)"]},
+    {"code": "NCA", "short": "Comp. App. (AT)", "label": "Company Appeal (AT)", "status_id": 32, "common": true,
+     "aliases": ["Comp. App. (AT)", "Comp App (AT)", "Company Appeal (AT)", "Company Appeal(AT)", "CA (AT)", "C.A. (AT)", "Comp. Appeal (AT)"]},
+    {"code": "NIA", "short": "I.A.", "label": "Interlocutory Application", "status_id": 35, "common": true,
+     "aliases": ["I.A.", "IA", "I.A", "Interlocutory Application", "I.A. (AT)", "IA (AT)"]},
+    {"code": "NCOMPA", "short": "Competition App. (AT)", "label": "Competition Appeal (AT)", "status_id": 34, "common": true,
+     "aliases": ["Competition App. (AT)", "Competition Appeal (AT)", "Competition Appeal(AT)", "Comp. Appeal (AT) (Competition)", "Competition App (AT)"]},
+    {"code": "NCONT", "short": "Contempt Case (AT)", "label": "Contempt Case (AT)", "status_id": 37, "common": false,
+     "aliases": ["Contempt Case (AT)", "Contempt Case(AT)", "Cont. Case (AT)", "Contempt Case", "Contempt Petition (AT)", "Cont. Pet. (AT)"]},
+    {"code": "NREVA", "short": "Review App. (AT)", "label": "Review Application (AT)", "status_id": 38, "common": false,
+     "aliases": ["Review Application (AT)", "Review Application", "Review App. (AT)", "Review Appl. (AT)", "R.A. (AT)", "RA (AT)"]},
+    {"code": "NRESA", "short": "Restoration App. (AT)", "label": "Restoration Application (AT)", "status_id": 39, "common": false,
+     "aliases": ["Restoration Application (AT)", "Restoration Application", "Restoration App. (AT)", "Restoration Appl. (AT)", "Rest. App. (AT)"]},
+    {"code": "NCOMPN", "short": "Compensation App.", "label": "Compensation Application", "status_id": 36, "common": false,
+     "aliases": ["Compensation Application", "Compensation Application (AT)", "Compensation App. (AT)", "Compensation App."]},
+    {"code": "NTA", "short": "Transfer Appeal (AT)", "label": "Transfer Appeal (AT)", "status_id": 40, "common": false,
+     "aliases": ["Transfer Appeal (AT)", "Transfer Appeal", "T.A. (AT)", "TA (AT)", "T.A. (AT) (Compt.)", "TA (AT) (Compt)", "T.A. (AT) (Ins)", "TA (AT) (Competition)", "T.A. (AT) (Competition)", "TA (AT) (Comp)"]},
+    {"code": "NTOP", "short": "TOP (MRTP-AT)", "label": "Transfer Original Petition (MRTP-AT)", "status_id": 61, "common": false,
+     "aliases": ["Transfer Original Petition (MRTP-AT)", "TOP (MRTP-AT)", "T.O.P. (MRTP-AT)", "TOP (MRTP)", "Transfer Original Petition"]}
+  ]
+}
