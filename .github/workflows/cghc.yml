@@ -1,0 +1,50 @@
+name: Chhattisgarh HC cause lists → OneCourt app
+
+on:
+  schedule:
+    # Hourly from 11:15 AM to 11:15 PM IST (05:45–17:45 UTC); nothing overnight.
+    # CG HC publishes daily lists days ahead and supplementary lists the day
+    # before. The app's cron can also start this workflow (src/gh_dispatch.php).
+    - cron: "45 5-17 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Re-send every list even if unchanged"
+        type: boolean
+        default: false
+      date:
+        description: "Only this date (YYYY-MM-DD), blank for all"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cghc-ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40   # daily lists run to ~180 pages
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch, parse and send to the app
+        env:
+          APP_INGEST_URL: ${{ secrets.APP_INGEST_URL }}
+          APP_INGEST_TOKEN: ${{ secrets.APP_INGEST_TOKEN }}
+        run: |
+          args="--court cghc"
+          if [ "${{ inputs.force }}" = "true" ]; then args="$args --force"; fi
+          if [ -n "${{ inputs.date }}" ]; then args="$args --date ${{ inputs.date }}"; fi
+          python run.py $args

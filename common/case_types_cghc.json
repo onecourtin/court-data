@@ -1,0 +1,351 @@
+{
+ "_about": "Chhattisgarh High Court case types, as printed in its cause lists (TYPE/number/year). Codes are 'CG' + the type without punctuation, so they never collide with other courts. Full names are best-effort; the printed label is what the court uses. Keep in step with onecourt-app/database/case_types_cghc.json.",
+ "types": [
+  {
+   "code": "CGWPS",
+   "label": "WPS",
+   "name": "Writ Petition (Service)",
+   "common": true,
+   "aliases": [
+    "WPS"
+   ]
+  },
+  {
+   "code": "CGWPC",
+   "label": "WPC",
+   "name": "Writ Petition (Civil)",
+   "common": true,
+   "aliases": [
+    "WPC"
+   ]
+  },
+  {
+   "code": "CGWPCR",
+   "label": "WPCR",
+   "name": "Writ Petition (Criminal)",
+   "common": true,
+   "aliases": [
+    "WPCR"
+   ]
+  },
+  {
+   "code": "CGWP227",
+   "label": "WP227",
+   "name": "Writ Petition under Article 227",
+   "common": true,
+   "aliases": [
+    "W.P.(227)",
+    "WP(227)",
+    "WP227"
+   ]
+  },
+  {
+   "code": "CGWPT",
+   "label": "WPT",
+   "name": "Writ Petition (Tax)",
+   "common": false,
+   "aliases": [
+    "WPT"
+   ]
+  },
+  {
+   "code": "CGWPL",
+   "label": "WPL",
+   "name": "Writ Petition (Labour)",
+   "common": false,
+   "aliases": [
+    "WPL"
+   ]
+  },
+  {
+   "code": "CGWPPIL",
+   "label": "WPPIL",
+   "name": "Writ Petition (PIL)",
+   "common": true,
+   "aliases": [
+    "W.P.(PIL)",
+    "WPPIL"
+   ]
+  },
+  {
+   "code": "CGWPHC",
+   "label": "WPHC",
+   "name": "Writ Petition (Habeas Corpus)",
+   "common": false,
+   "aliases": [
+    "WPHC"
+   ]
+  },
+  {
+   "code": "CGWP",
+   "label": "WP",
+   "name": "Writ Petition (old series)",
+   "common": false,
+   "aliases": [
+    "W.P.",
+    "WP"
+   ]
+  },
+  {
+   "code": "CGWA",
+   "label": "WA",
+   "name": "Writ Appeal",
+   "common": true,
+   "aliases": [
+    "W.A.",
+    "WA"
+   ]
+  },
+  {
+   "code": "CGCRA",
+   "label": "CRA",
+   "name": "Criminal Appeal",
+   "common": true,
+   "aliases": [
+    "CR.A",
+    "CR.A.",
+    "CRA",
+    "CRL.A."
+   ]
+  },
+  {
+   "code": "CGCRR",
+   "label": "CRR",
+   "name": "Criminal Revision",
+   "common": true,
+   "aliases": [
+    "CR.R.",
+    "CRR"
+   ]
+  },
+  {
+   "code": "CGCRMP",
+   "label": "CRMP",
+   "name": "Criminal Misc. Petition",
+   "common": true,
+   "aliases": [
+    "CR.M.P.",
+    "CRMP"
+   ]
+  },
+  {
+   "code": "CGMCRC",
+   "label": "MCRC",
+   "name": "Misc. Criminal Case (bail)",
+   "common": true,
+   "aliases": [
+    "M.CR.C.",
+    "MCRC"
+   ]
+  },
+  {
+   "code": "CGMCRCA",
+   "label": "MCRCA",
+   "name": "Misc. Criminal Case (anticipatory bail)",
+   "common": true,
+   "aliases": [
+    "M.CR.C.A.",
+    "MCRCA"
+   ]
+  },
+  {
+   "code": "CGACQA",
+   "label": "ACQA",
+   "name": "Acquittal Appeal",
+   "common": false,
+   "aliases": [
+    "ACQA"
+   ]
+  },
+  {
+   "code": "CGCRREF",
+   "label": "CRREF",
+   "name": "Criminal Reference",
+   "common": false,
+   "aliases": [
+    "CRREF"
+   ]
+  },
+  {
+   "code": "CGTPCR",
+   "label": "TPCR",
+   "name": "Transfer Petition (Criminal)",
+   "common": false,
+   "aliases": [
+    "TPCR"
+   ]
+  },
+  {
+   "code": "CGMAC",
+   "label": "MAC",
+   "name": "Misc. Appeal (Motor Accident Claims)",
+   "common": true,
+   "aliases": [
+    "M.A.C.",
+    "MAC"
+   ]
+  },
+  {
+   "code": "CGMA",
+   "label": "MA",
+   "name": "Misc. Appeal",
+   "common": true,
+   "aliases": [
+    "M.A.",
+    "MA"
+   ]
+  },
+  {
+   "code": "CGFA",
+   "label": "FA",
+   "name": "First Appeal",
+   "common": true,
+   "aliases": [
+    "F.A.",
+    "FA"
+   ]
+  },
+  {
+   "code": "CGFAMAT",
+   "label": "FA(MAT)",
+   "name": "First Appeal (Matrimonial)",
+   "common": true,
+   "aliases": [
+    "F.A.(MAT)",
+    "FA (MAT)",
+    "FA(MAT)"
+   ]
+  },
+  {
+   "code": "CGFAM",
+   "label": "FAM",
+   "name": "First Appeal (FAM series)",
+   "common": false,
+   "aliases": [
+    "FAM"
+   ]
+  },
+  {
+   "code": "CGSA",
+   "label": "SA",
+   "name": "Second Appeal",
+   "common": true,
+   "aliases": [
+    "S.A.",
+    "SA"
+   ]
+  },
+  {
+   "code": "CGCR",
+   "label": "CR",
+   "name": "Civil Revision",
+   "common": true,
+   "aliases": [
+    "C.R.",
+    "CR"
+   ]
+  },
+  {
+   "code": "CGMCC",
+   "label": "MCC",
+   "name": "Misc. Civil Case",
+   "common": true,
+   "aliases": [
+    "M.C.C.",
+    "MCC"
+   ]
+  },
+  {
+   "code": "CGREVP",
+   "label": "REVP",
+   "name": "Review Petition",
+   "common": true,
+   "aliases": [
+    "REVP"
+   ]
+  },
+  {
+   "code": "CGCONT",
+   "label": "CONT",
+   "name": "Contempt Petition",
+   "common": true,
+   "aliases": [
+    "CONT",
+    "CONT.",
+    "CONTEMPT"
+   ]
+  },
+  {
+   "code": "CGTAXC",
+   "label": "TAXC",
+   "name": "Tax Case",
+   "common": false,
+   "aliases": [
+    "TAXC"
+   ]
+  },
+  {
+   "code": "CGTPC",
+   "label": "TPC",
+   "name": "Transfer Petition (Civil)",
+   "common": false,
+   "aliases": [
+    "TPC"
+   ]
+  },
+  {
+   "code": "CGARBA",
+   "label": "ARBA",
+   "name": "Arbitration Appeal",
+   "common": false,
+   "aliases": [
+    "ARBA"
+   ]
+  },
+  {
+   "code": "CGARBR",
+   "label": "ARBR",
+   "name": "Arbitration Revision",
+   "common": false,
+   "aliases": [
+    "ARBR"
+   ]
+  },
+  {
+   "code": "CGAC",
+   "label": "AC",
+   "name": "Arbitration Case",
+   "common": false,
+   "aliases": [
+    "AC"
+   ]
+  },
+  {
+   "code": "CGCOMA",
+   "label": "COMA",
+   "name": "Commercial Appeal",
+   "common": false,
+   "aliases": [
+    "COMA"
+   ]
+  },
+  {
+   "code": "CGEP",
+   "label": "EP",
+   "name": "Election Petition",
+   "common": false,
+   "aliases": [
+    "EP"
+   ]
+  },
+  {
+   "code": "CGCS",
+   "label": "CS",
+   "name": "Civil Suit",
+   "common": false,
+   "aliases": [
+    "CS"
+   ]
+  }
+ ]
+}
