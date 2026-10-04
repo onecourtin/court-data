@@ -1,5 +1,5 @@
 {
- "_about": "Chhattisgarh High Court case types, as printed in its cause lists (TYPE/number/year). Codes are 'CG' + the type without punctuation, so they never collide with other courts. Full names are best-effort; the printed label is what the court uses. Keep in step with onecourt-app/database/case_types_cghc.json.",
+ "_about": "Chhattisgarh High Court case types, as printed in its cause lists (TYPE/number/year). Codes are 'CG' + the type without punctuation, so they never collide with other courts. Full names are best-effort; the printed label is what the court uses. Keep in step with onecourt-app/database/case_types_cghc.json. 'oj' is the court's own id for the type in its Order/Judgement search (oj_search.php).",
  "types": [
   {
    "code": "CGWPS",
@@ -8,7 +8,8 @@
    "common": true,
    "aliases": [
     "WPS"
-   ]
+   ],
+   "oj": "39"
   },
   {
    "code": "CGWPC",
@@ -17,7 +18,8 @@
    "common": true,
    "aliases": [
     "WPC"
-   ]
+   ],
+   "oj": "46"
   },
   {
    "code": "CGWPCR",
@@ -26,7 +28,8 @@
    "common": true,
    "aliases": [
     "WPCR"
-   ]
+   ],
+   "oj": "47"
   },
   {
    "code": "CGWP227",
@@ -37,7 +40,8 @@
     "W.P.(227)",
     "WP(227)",
     "WP227"
-   ]
+   ],
+   "oj": "37"
   },
   {
    "code": "CGWPT",
@@ -46,7 +50,8 @@
    "common": false,
    "aliases": [
     "WPT"
-   ]
+   ],
+   "oj": "44"
   },
   {
    "code": "CGWPL",
@@ -55,7 +60,8 @@
    "common": false,
    "aliases": [
     "WPL"
-   ]
+   ],
+   "oj": "43"
   },
   {
    "code": "CGWPPIL",
@@ -65,7 +71,8 @@
    "aliases": [
     "W.P.(PIL)",
     "WPPIL"
-   ]
+   ],
+   "oj": "45"
   },
   {
    "code": "CGWPHC",
@@ -74,7 +81,8 @@
    "common": false,
    "aliases": [
     "WPHC"
-   ]
+   ],
+   "oj": "48"
   },
   {
    "code": "CGWP",
@@ -84,7 +92,8 @@
    "aliases": [
     "W.P.",
     "WP"
-   ]
+   ],
+   "oj": "36"
   },
   {
    "code": "CGWA",
@@ -94,7 +103,8 @@
    "aliases": [
     "W.A.",
     "WA"
-   ]
+   ],
+   "oj": "42"
   },
   {
    "code": "CGCRA",
@@ -106,7 +116,8 @@
     "CR.A.",
     "CRA",
     "CRL.A."
-   ]
+   ],
+   "oj": "50"
   },
   {
    "code": "CGCRR",
@@ -116,7 +127,8 @@
    "aliases": [
     "CR.R.",
     "CRR"
-   ]
+   ],
+   "oj": "51"
   },
   {
    "code": "CGCRMP",
@@ -126,7 +138,8 @@
    "aliases": [
     "CR.M.P.",
     "CRMP"
-   ]
+   ],
+   "oj": "59"
   },
   {
    "code": "CGMCRC",
@@ -136,7 +149,8 @@
    "aliases": [
     "M.CR.C.",
     "MCRC"
-   ]
+   ],
+   "oj": "52"
   },
   {
    "code": "CGMCRCA",
@@ -146,7 +160,8 @@
    "aliases": [
     "M.CR.C.A.",
     "MCRCA"
-   ]
+   ],
+   "oj": "64"
   },
   {
    "code": "CGACQA",
@@ -155,7 +170,8 @@
    "common": false,
    "aliases": [
     "ACQA"
-   ]
+   ],
+   "oj": "67"
   },
   {
    "code": "CGCRREF",
@@ -164,7 +180,8 @@
    "common": false,
    "aliases": [
     "CRREF"
-   ]
+   ],
+   "oj": "58"
   },
   {
    "code": "CGTPCR",
@@ -173,7 +190,8 @@
    "common": false,
    "aliases": [
     "TPCR"
-   ]
+   ],
+   "oj": "66"
   },
   {
    "code": "CGMAC",
@@ -183,7 +201,8 @@
    "aliases": [
     "M.A.C.",
     "MAC"
-   ]
+   ],
+   "oj": "26"
   },
   {
    "code": "CGMA",
@@ -193,7 +212,8 @@
    "aliases": [
     "M.A.",
     "MA"
-   ]
+   ],
+   "oj": "3"
   },
   {
    "code": "CGFA",
@@ -203,7 +223,8 @@
    "aliases": [
     "F.A.",
     "FA"
-   ]
+   ],
+   "oj": "5"
   },
   {
    "code": "CGFAMAT",
@@ -214,7 +235,8 @@
     "F.A.(MAT)",
     "FA (MAT)",
     "FA(MAT)"
-   ]
+   ],
+   "oj": "70"
   },
   {
    "code": "CGFAM",
@@ -223,7 +245,8 @@
    "common": false,
    "aliases": [
     "FAM"
-   ]
+   ],
+   "oj": "24"
   },
   {
    "code": "CGSA",
@@ -233,7 +256,8 @@
    "aliases": [
     "S.A.",
     "SA"
-   ]
+   ],
+   "oj": "6"
   },
   {
    "code": "CGCR",
@@ -243,7 +267,8 @@
    "aliases": [
     "C.R.",
     "CR"
-   ]
+   ],
+   "oj": "8"
   },
   {
    "code": "CGMCC",
@@ -253,7 +278,8 @@
    "aliases": [
     "M.C.C.",
     "MCC"
-   ]
+   ],
+   "oj": "4"
   },
   {
    "code": "CGREVP",
@@ -262,7 +288,8 @@
    "common": true,
    "aliases": [
     "REVP"
-   ]
+   ],
+   "oj": "23"
   },
   {
    "code": "CGCONT",
@@ -273,7 +300,8 @@
     "CONT",
     "CONT.",
     "CONTEMPT"
-   ]
+   ],
+   "oj": "17"
   },
   {
    "code": "CGTAXC",
@@ -282,7 +310,8 @@
    "common": false,
    "aliases": [
     "TAXC"
-   ]
+   ],
+   "oj": "27"
   },
   {
    "code": "CGTPC",
@@ -291,7 +320,8 @@
    "common": false,
    "aliases": [
     "TPC"
-   ]
+   ],
+   "oj": "29"
   },
   {
    "code": "CGARBA",
@@ -300,7 +330,8 @@
    "common": false,
    "aliases": [
     "ARBA"
-   ]
+   ],
+   "oj": "28"
   },
   {
    "code": "CGARBR",
@@ -309,16 +340,8 @@
    "common": false,
    "aliases": [
     "ARBR"
-   ]
-  },
-  {
-   "code": "CGAC",
-   "label": "AC",
-   "name": "Arbitration Case",
-   "common": false,
-   "aliases": [
-    "AC"
-   ]
+   ],
+   "oj": "69"
   },
   {
    "code": "CGCOMA",
@@ -327,7 +350,8 @@
    "common": false,
    "aliases": [
     "COMA"
-   ]
+   ],
+   "oj": "34"
   },
   {
    "code": "CGEP",
@@ -336,7 +360,8 @@
    "common": false,
    "aliases": [
     "EP"
-   ]
+   ],
+   "oj": "9"
   },
   {
    "code": "CGCS",
@@ -345,7 +370,278 @@
    "common": false,
    "aliases": [
     "CS"
-   ]
+   ],
+   "oj": "35"
+  },
+  {
+   "code": "CGARBAP",
+   "label": "ARBAP",
+   "name": "Arbitration Application",
+   "common": false,
+   "aliases": [
+    "ARBAP"
+   ],
+   "oj": "68"
+  },
+  {
+   "code": "CGAW",
+   "label": "AW",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "AW"
+   ],
+   "oj": "13"
+  },
+  {
+   "code": "CGCA",
+   "label": "CA",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "CA"
+   ],
+   "oj": "11"
+  },
+  {
+   "code": "CGCEA",
+   "label": "CEA",
+   "name": "Central Excise Appeal",
+   "common": false,
+   "aliases": [
+    "CEA"
+   ],
+   "oj": "20"
+  },
+  {
+   "code": "CGCER",
+   "label": "CER",
+   "name": "Central Excise Reference",
+   "common": false,
+   "aliases": [
+    "CER"
+   ],
+   "oj": "19"
+  },
+  {
+   "code": "CGCESR",
+   "label": "CESR",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "CESR"
+   ],
+   "oj": "32"
+  },
+  {
+   "code": "CGCOMP",
+   "label": "COMP",
+   "name": "Company Petition",
+   "common": false,
+   "aliases": [
+    "COMP"
+   ],
+   "oj": "12"
+  },
+  {
+   "code": "CGCONC",
+   "label": "CONC",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "CONC"
+   ],
+   "oj": "25"
+  },
+  {
+   "code": "CGCONTR",
+   "label": "CONTR",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "CONTR"
+   ],
+   "oj": "57"
+  },
+  {
+   "code": "CGCONTS",
+   "label": "CONTS",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "CONTS"
+   ],
+   "oj": "41"
+  },
+  {
+   "code": "CGCP",
+   "label": "CP",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "CP"
+   ],
+   "oj": "1"
+  },
+  {
+   "code": "CGCVLREF",
+   "label": "CVLREF",
+   "name": "Civil Reference",
+   "common": false,
+   "aliases": [
+    "CVLREF"
+   ],
+   "oj": "71"
+  },
+  {
+   "code": "CGEA",
+   "label": "EA",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "EA"
+   ],
+   "oj": "10"
+  },
+  {
+   "code": "CGEDR",
+   "label": "EDR",
+   "name": "Estate Duty Reference",
+   "common": false,
+   "aliases": [
+    "EDR"
+   ],
+   "oj": "30"
+  },
+  {
+   "code": "CGITA",
+   "label": "ITA",
+   "name": "Income Tax Appeal",
+   "common": false,
+   "aliases": [
+    "ITA"
+   ],
+   "oj": "18"
+  },
+  {
+   "code": "CGITR",
+   "label": "ITR",
+   "name": "Income Tax Reference",
+   "common": false,
+   "aliases": [
+    "ITR"
+   ],
+   "oj": "15"
+  },
+  {
+   "code": "CGLPA",
+   "label": "LPA",
+   "name": "Letters Patent Appeal",
+   "common": false,
+   "aliases": [
+    "LPA"
+   ],
+   "oj": "2"
+  },
+  {
+   "code": "CGMCA",
+   "label": "MCA",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "MCA"
+   ],
+   "oj": "7"
+  },
+  {
+   "code": "CGMCCS",
+   "label": "MCCS",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "MCCS"
+   ],
+   "oj": "21"
+  },
+  {
+   "code": "CGMCP",
+   "label": "MCP",
+   "name": "Misc. Civil Petition",
+   "common": false,
+   "aliases": [
+    "MCP"
+   ],
+   "oj": "22"
+  },
+  {
+   "code": "CGMCRP",
+   "label": "MCRP",
+   "name": "Misc. Criminal Petition",
+   "common": false,
+   "aliases": [
+    "MCRP"
+   ],
+   "oj": "65"
+  },
+  {
+   "code": "CGMP",
+   "label": "MP",
+   "name": "Misc. Petition",
+   "common": false,
+   "aliases": [
+    "MP"
+   ],
+   "oj": "49"
+  },
+  {
+   "code": "CGMWP",
+   "label": "MWP",
+   "name": "Misc. Writ Petition",
+   "common": false,
+   "aliases": [
+    "MWP"
+   ],
+   "oj": "38"
+  },
+  {
+   "code": "CGOD",
+   "label": "OD",
+   "name": "",
+   "common": false,
+   "aliases": [
+    "OD"
+   ],
+   "oj": "14"
+  },
+  {
+   "code": "CGSTR",
+   "label": "STR",
+   "name": "Sales Tax Reference",
+   "common": false,
+   "aliases": [
+    "STR"
+   ],
+   "oj": "33"
+  },
+  {
+   "code": "CGWTA",
+   "label": "WTA",
+   "name": "Wealth Tax Appeal",
+   "common": false,
+   "aliases": [
+    "WTA"
+   ],
+   "oj": "31"
+  },
+  {
+   "code": "CGWTR",
+   "label": "WTR",
+   "name": "Wealth Tax Reference",
+   "common": false,
+   "aliases": [
+    "WTR"
+   ],
+   "oj": "16"
   }
  ]
 }
