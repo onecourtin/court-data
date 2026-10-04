@@ -1,0 +1,284 @@
+{
+ "_about": "Karnataka High Court case types as printed in its consolidated cause lists ('WP 30555/2026'). Codes are 'K' + the type's letters and digits. Each bench numbers cases in its own range (Dharwad 100000+, Kalaburagi 200000+). Keep in step with onecourt-app/database/case_types_khc.json.",
+ "types": [
+  {
+   "code": "KWP",
+   "label": "WP",
+   "name": "Writ Petition",
+   "common": true,
+   "aliases": [
+    "WP"
+   ]
+  },
+  {
+   "code": "KWA",
+   "label": "WA",
+   "name": "Writ Appeal",
+   "common": true,
+   "aliases": [
+    "WA"
+   ]
+  },
+  {
+   "code": "KMFA",
+   "label": "MFA",
+   "name": "Misc. First Appeal",
+   "common": true,
+   "aliases": [
+    "MFA"
+   ]
+  },
+  {
+   "code": "KRSA",
+   "label": "RSA",
+   "name": "Regular Second Appeal",
+   "common": true,
+   "aliases": [
+    "RSA"
+   ]
+  },
+  {
+   "code": "KRFA",
+   "label": "RFA",
+   "name": "Regular First Appeal",
+   "common": true,
+   "aliases": [
+    "RFA"
+   ]
+  },
+  {
+   "code": "KCRLP",
+   "label": "CRL.P",
+   "name": "Criminal Petition",
+   "common": true,
+   "aliases": [
+    "CRL.P"
+   ]
+  },
+  {
+   "code": "KCRLA",
+   "label": "CRL.A",
+   "name": "Criminal Appeal",
+   "common": true,
+   "aliases": [
+    "CRL.A"
+   ]
+  },
+  {
+   "code": "KCRLRP",
+   "label": "CRL.RP",
+   "name": "Criminal Revision Petition",
+   "common": true,
+   "aliases": [
+    "CRL.RP"
+   ]
+  },
+  {
+   "code": "KCRLRC",
+   "label": "CRL.RC",
+   "name": "Criminal Referred Case",
+   "common": false,
+   "aliases": [
+    "CRL.RC"
+   ]
+  },
+  {
+   "code": "KCRP",
+   "label": "CRP",
+   "name": "Civil Revision Petition",
+   "common": true,
+   "aliases": [
+    "CRP"
+   ]
+  },
+  {
+   "code": "KCCC",
+   "label": "CCC",
+   "name": "Civil Contempt Petition",
+   "common": true,
+   "aliases": [
+    "CCC"
+   ]
+  },
+  {
+   "code": "KCP",
+   "label": "CP",
+   "name": "Company Petition",
+   "common": false,
+   "aliases": [
+    "CP"
+   ]
+  },
+  {
+   "code": "KRP",
+   "label": "RP",
+   "name": "Review Petition",
+   "common": true,
+   "aliases": [
+    "RP"
+   ]
+  },
+  {
+   "code": "KCMP",
+   "label": "CMP",
+   "name": "Civil Misc. Petition",
+   "common": false,
+   "aliases": [
+    "CMP"
+   ]
+  },
+  {
+   "code": "KRPFC",
+   "label": "RPFC",
+   "name": "Revision Petition (Family Court)",
+   "common": false,
+   "aliases": [
+    "RPFC"
+   ]
+  },
+  {
+   "code": "KITA",
+   "label": "ITA",
+   "name": "Income Tax Appeal",
+   "common": false,
+   "aliases": [
+    "ITA"
+   ]
+  },
+  {
+   "code": "KCOMAP",
+   "label": "COMAP",
+   "name": "Commercial Appeal",
+   "common": false,
+   "aliases": [
+    "COMAP"
+   ]
+  },
+  {
+   "code": "KCOMPA",
+   "label": "COMPA",
+   "name": "Company Appeal",
+   "common": false,
+   "aliases": [
+    "COMPA"
+   ]
+  },
+  {
+   "code": "KCEA",
+   "label": "CEA",
+   "name": "Central Excise Appeal",
+   "common": false,
+   "aliases": [
+    "CEA"
+   ]
+  },
+  {
+   "code": "KCSTA",
+   "label": "CSTA",
+   "name": "Customs/Service Tax Appeal",
+   "common": false,
+   "aliases": [
+    "CSTA"
+   ]
+  },
+  {
+   "code": "KMSA",
+   "label": "MSA",
+   "name": "Misc. Second Appeal",
+   "common": false,
+   "aliases": [
+    "MSA"
+   ]
+  },
+  {
+   "code": "KMFACROB",
+   "label": "MFA.CROB",
+   "name": "MFA Cross Objection",
+   "common": false,
+   "aliases": [
+    "MFA.CROB"
+   ]
+  },
+  {
+   "code": "KRSACROB",
+   "label": "RSA.CROB",
+   "name": "RSA Cross Objection",
+   "common": false,
+   "aliases": [
+    "RSA.CROB"
+   ]
+  },
+  {
+   "code": "KRFACROB",
+   "label": "RFA.CROB",
+   "name": "RFA Cross Objection",
+   "common": false,
+   "aliases": [
+    "RFA.CROB"
+   ]
+  },
+  {
+   "code": "KWPHC",
+   "label": "WPHC",
+   "name": "Writ Petition (Habeas Corpus)",
+   "common": false,
+   "aliases": [
+    "WPHC"
+   ]
+  },
+  {
+   "code": "KAPEFA",
+   "label": "AP.EFA",
+   "name": "Arbitration Petition (EFA)",
+   "common": false,
+   "aliases": [
+    "AP.EFA"
+   ]
+  },
+  {
+   "code": "KAPIM",
+   "label": "AP.IM",
+   "name": "Arbitration Petition (IM)",
+   "common": false,
+   "aliases": [
+    "AP.IM"
+   ]
+  },
+  {
+   "code": "KHRRP",
+   "label": "HRRP",
+   "name": "House Rent Revision Petition",
+   "common": false,
+   "aliases": [
+    "HRRP"
+   ]
+  },
+  {
+   "code": "KSTRP",
+   "label": "STRP",
+   "name": "Sales Tax Revision Petition",
+   "common": false,
+   "aliases": [
+    "STRP"
+   ]
+  },
+  {
+   "code": "KCRLCCC",
+   "label": "CRL.CCC",
+   "name": "Criminal Contempt",
+   "common": false,
+   "aliases": [
+    "CRL.CCC"
+   ]
+  },
+  {
+   "code": "KOSA",
+   "label": "OSA",
+   "name": "Original Side Appeal",
+   "common": false,
+   "aliases": [
+    "OSA"
+   ]
+  }
+ ]
+}

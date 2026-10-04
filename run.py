@@ -37,6 +37,7 @@ PARSER_VERSION = "sci-1"
 NCLAT_PARSER_VERSION = "nclat-1"
 DHC_PARSER_VERSION = "dhc-1"
 CGHC_PARSER_VERSION = "cghc-1"
+KHC_PARSER_VERSION = "khc-1"
 log = logging.getLogger("court-data")
 
 
@@ -50,7 +51,7 @@ def main(argv=None) -> int:
     ap.add_argument("--force", action="store_true", help="re-send even if unchanged")
     ap.add_argument("--out", help="directory to write parsed JSON into")
     ap.add_argument("--max", type=int, default=0, help="stop after N lists (testing)")
-    ap.add_argument("--court", choices=["sci", "nclat", "dhc", "cghc"], default="sci")
+    ap.add_argument("--court", choices=["sci", "nclat", "dhc", "cghc", "khc"], default="sci")
     args = ap.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -60,6 +61,8 @@ def main(argv=None) -> int:
         return run_dhc(args)
     if args.court == "cghc":
         return run_cghc(args)
+    if args.court == "khc":
+        return run_khc(args)
     session = new_session()
     client = None if args.dry_run else AppClient(args.app, args.token)
 
@@ -385,6 +388,68 @@ def run_cghc(args) -> int:
     summary["finished_at"] = datetime.now(timezone.utc).isoformat()
     Path("status").mkdir(exist_ok=True)
     Path("status/last-run-cghc.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
+    log.info("Done: %s", json.dumps({k: v for k, v in summary.items() if k != "errors"}))
+    return 1 if summary["errors"] else 0
+
+
+KHC_LISTS = [("B", "BLR", "https://judiciary.karnataka.gov.in/pdfs/consolidatedCauselist/blrconsolidation.pdf"),
+             ("D", "DWD", "https://judiciary.karnataka.gov.in/pdfs/consolidatedCauselist/dwdconsolidation.pdf"),
+             ("K", "KLB", "https://judiciary.karnataka.gov.in/pdfs/consolidatedCauselist/klbconsolidation.pdf")]
+
+
+def run_khc(args) -> int:
+    """Karnataka High Court: one consolidated PDF per bench, replaced each day with the next day's list."""
+    import requests
+    from khc.parse import parse_pdf as khc_parse
+
+    session = requests.Session()
+    session.headers["User-Agent"] = "OneCourtPro/1.0 (+https://onecourt.in; cause-list alerts)"
+    client = None if args.dry_run else AppClient(args.app, args.token)
+    known = {} if (client is None or args.force) else client.state("KHC")
+    summary = {"started_at": datetime.now(timezone.utc).isoformat(), "court": "KHC",
+               "found": len(KHC_LISTS), "sent": 0, "unchanged": 0, "errors": []}
+    out_dir = Path(args.out) if args.out else None
+    if out_dir:
+        out_dir.mkdir(parents=True, exist_ok=True)
+    for bench, code, url in KHC_LISTS:
+        if args.only and args.only != code:
+            continue
+        try:
+            head = session.head(url, timeout=30, allow_redirects=True)
+            if head.status_code != 200:
+                continue
+            etag = head.headers.get("ETag", "") or f'{head.headers.get("Last-Modified", "")}|{head.headers.get("Content-Length", "")}'
+            # The same address carries a new day's list each day, so the app knows each day's copy as "<url>#d=<date>".
+            if etag and any(u.startswith(url) and e == etag for u, e in known.items()):
+                summary["unchanged"] += 1
+                continue
+            resp = session.get(url, timeout=240)
+            resp.raise_for_status()
+            parsed = khc_parse(resp.content, bench)
+            if not parsed["entries"] or not parsed["list_date"]:
+                raise RuntimeError("parsed no entries or no date — parser needs attention")
+            if args.date and parsed["list_date"] != args.date:
+                continue
+            payload = {
+                "court": "KHC", "parser": KHC_PARSER_VERSION, "pdf_url": f"{url}#d={parsed['list_date']}", "etag": etag,
+                "last_modified": head.headers.get("Last-Modified", ""), "list_date": parsed["list_date"], "kind": "daily",
+                "list_code": code, "list_label": {"B": "Bengaluru", "D": "Dharwad", "K": "Kalaburagi"}[bench] + " bench list",
+                "supplementary": False, "benches": [], "stats": parsed["stats"], "entries": parsed["entries"],
+            }
+            log.info("%s %s %4d entries", parsed["list_date"], code, len(parsed["entries"]))
+            if out_dir:
+                (out_dir / f"khc_{parsed['list_date']}_{code}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
+            if client:
+                result = client.send(payload)
+                log.info("   app: %s", json.dumps(result)[:300])
+                summary["sent"] += 1
+            time.sleep(2)
+        except Exception as exc:
+            log.error("%s: %s", url, exc)
+            summary["errors"].append(f"{url}: {exc}")
+    summary["finished_at"] = datetime.now(timezone.utc).isoformat()
+    Path("status").mkdir(exist_ok=True)
+    Path("status/last-run-khc.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
     log.info("Done: %s", json.dumps({k: v for k, v in summary.items() if k != "errors"}))
     return 1 if summary["errors"] else 0
 
