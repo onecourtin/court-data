@@ -395,6 +395,10 @@ def run_cghc(args) -> int:
 KHC_LISTS = [("B", "BLR", "https://judiciary.karnataka.gov.in/pdfs/consolidatedCauselist/blrconsolidation.pdf"),
              ("D", "DWD", "https://judiciary.karnataka.gov.in/pdfs/consolidatedCauselist/dwdconsolidation.pdf"),
              ("K", "KLB", "https://judiciary.karnataka.gov.in/pdfs/consolidatedCauselist/klbconsolidation.pdf")]
+# judiciary.karnataka.gov.in doesn't answer servers abroad (GitHub's), so the
+# app's server keeps a copy of each list: GET {APP}/api/khc-mirror/{blr|dwd|klb}
+# (?meta=1 for just its version), with the ingest token.
+KHC_MIRROR = {"B": "blr", "D": "dwd", "K": "klb"}
 
 
 def run_khc(args) -> int:
@@ -415,15 +419,23 @@ def run_khc(args) -> int:
         if args.only and args.only != code:
             continue
         try:
-            head = session.head(url, timeout=30, allow_redirects=True)
-            if head.status_code != 200:
-                continue
-            etag = head.headers.get("ETag", "") or f'{head.headers.get("Last-Modified", "")}|{head.headers.get("Content-Length", "")}'
+            if client:   # through the app's copy (see KHC_MIRROR)
+                auth = {"Authorization": f"Bearer {args.token}"}
+                mirror = f"{args.app.rstrip('/')}/api/khc-mirror/{KHC_MIRROR[bench]}"
+                meta = session.get(mirror, params={"meta": 1}, headers=auth, timeout=30)
+                if meta.status_code != 200:
+                    raise RuntimeError(f"app has no copy yet (HTTP {meta.status_code})")
+                etag, last_mod = meta.json().get("etag", ""), ""
+            else:        # directly (works from India)
+                head = session.head(url, timeout=30, allow_redirects=True)
+                if head.status_code != 200:
+                    continue
+                etag, last_mod = head.headers.get("ETag", ""), head.headers.get("Last-Modified", "")
             # The same address carries a new day's list each day, so the app knows each day's copy as "<url>#d=<date>".
             if etag and any(u.startswith(url) and e == etag for u, e in known.items()):
                 summary["unchanged"] += 1
                 continue
-            resp = session.get(url, timeout=240)
+            resp = session.get(mirror, headers=auth, timeout=240) if client else session.get(url, timeout=240)
             resp.raise_for_status()
             parsed = khc_parse(resp.content, bench)
             if not parsed["entries"] or not parsed["list_date"]:
@@ -432,7 +444,7 @@ def run_khc(args) -> int:
                 continue
             payload = {
                 "court": "KHC", "parser": KHC_PARSER_VERSION, "pdf_url": f"{url}#d={parsed['list_date']}", "etag": etag,
-                "last_modified": head.headers.get("Last-Modified", ""), "list_date": parsed["list_date"], "kind": "daily",
+                "last_modified": last_mod, "list_date": parsed["list_date"], "kind": "daily",
                 "list_code": code, "list_label": {"B": "Bengaluru", "D": "Dharwad", "K": "Kalaburagi"}[bench] + " bench list",
                 "supplementary": False, "benches": [], "stats": parsed["stats"], "entries": parsed["entries"],
             }
