@@ -17,7 +17,9 @@ from __future__ import annotations
 
 import logging
 import re
+import tempfile
 from datetime import date, datetime, timedelta, timezone
+from pathlib import Path
 from typing import List
 
 import requests
@@ -40,9 +42,26 @@ _LOC_RE = re.compile(r'id="pdf_location"[^>]*value="([^"]*)"|value="([^"]*)"[^>]
 _SAFE_NAME = re.compile(r"^[A-Za-z0-9_.-]+\.pdf$", re.I)
 
 
+# highcourt.cg.gov.in uses Let's Encrypt's newer "ISRG Root YR" (2025), which
+# older certificate bundles (certifi, GitHub's runners) don't have yet. We add
+# that one official root (letsencrypt.org/certs/gen-y/root-yr.pem, SHA-256
+# E5:7B:7E:6F:…:EB:F4:A8:6F) to the usual bundle — certificates are still
+# fully checked.
+EXTRA_ROOT = Path(__file__).resolve().parent / "certs" / "isrg-root-yr.pem"
+
+
+def _ca_bundle() -> str:
+    import certifi
+    out = Path(tempfile.gettempdir()) / "onecourt-cghc-ca.pem"
+    if not out.exists():
+        out.write_text(Path(certifi.where()).read_text() + "\n" + EXTRA_ROOT.read_text())
+    return str(out)
+
+
 def new_session() -> requests.Session:
     s = requests.Session()
     s.headers["User-Agent"] = USER_AGENT
+    s.verify = _ca_bundle()
     return s
 
 
