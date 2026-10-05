@@ -148,3 +148,15 @@ def test_advance_list(advance):
 ])
 def test_list_labels(code, kind, label):
     assert list_label(code, kind) == label
+
+
+def test_two_digit_sno_wrap_connected_item():
+    """'16.1' + '19' on the next line is connected item 16.119, not a new item 19 (6 Oct 2026, Court 15)."""
+    from pathlib import Path
+    from sci.parse import parse_pdf
+    data = (Path(__file__).parent / "fixtures" / "2026-10-06_M_J_1_wrap.pdf").read_bytes()
+    e = parse_pdf(data, list_code="M_J_1", kind="daily")["entries"]
+    hit = next(x for x in e if "DIARY|55402|2025" in x["keys"])
+    assert hit["item_no"] == "16.119" and hit["connected"]
+    assert (hit["petitioner"], hit["respondent"]) == ("STATE OF ODISHA AND ORS.", "PURNA CHANDRA PANDA")
+    assert all(x["keys"] for x in e if x["item_no"].startswith("16.1"))

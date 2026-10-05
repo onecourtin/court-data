@@ -143,13 +143,15 @@ def _sno_wraps(item: Optional[dict], token: str) -> bool:
     """
     The SNo. column is narrow, so long connected-item numbers wrap onto the
     next line (the one that carries the case number):
-      "56.1" + "0" -> 56.10        "517." + "1" -> 517.1
+      "56.1" + "0" -> 56.10        "517." + "1" -> 517.1        "16.1" + "19" -> 16.119
+    A connected item always prints its case number on its first line, so an
+    item still without one whose next SNo. is a short number is a wrap.
     """
     if item is None or not token.isdigit() or item["case"]:
         return False
     if item["pending_sub"]:
         return len(token) <= 3
-    return 0 < item["sub"] < 10 and len(token) == 1
+    return 0 < item["sub"] and len(token) <= 2
 
 
 def _new_item(sno: str, ctx: dict) -> dict:
